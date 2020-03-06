@@ -1,0 +1,580 @@
+
+
+/* header navbar */
+#header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+
+    @include sp-layout {
+        background-color: $bg-white;
+    }
+
+    nav {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        @include pc-layout {
+            padding: 5px 38px;
+            height: 60px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,.2);
+            background-color: $bg-white;
+            &:hover {
+                border-radius: 30px;
+            }
+        }
+
+        @include sp-layout {
+            width: 100%;
+            justify-content: space-between;
+
+        }
+
+        .nav-item {
+            width: 50px;
+            a {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                transition: color 0.3s ease-out;
+                text-decoration: none;
+                font-size: $font-size-large;
+                font-weight: 600;
+                color: $header-color;
+                &:hover {
+                    color: $sora;
+                }
+            }
+
+            i {
+                margin: 5px 0;
+                display: block;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+}
+
+
+/* login page */
+.loginForm {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    margin: 40px auto;
+    border: $border-black solid 1px;
+    text-align: left;
+    box-shadow: $nice-box-shadow;
+    background: $bg-white;
+    padding-top: 20px;
+    animation: fadeInUp .7s ease;  
+}
+
+
+.loginInput {
+    display: block;
+    border-radius: 10px;
+    font-size: $font-size-large;
+    width: 70%;
+    height: 50px;
+    margin: 10px auto;
+    padding: 0 10px;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: $post-box-shadow;
+
+    &:focus {
+        outline: none;
+        box-shadow: $post-box-shadow-deep;
+    }
+}
+
+.loginLabel {
+    display: block;
+    margin-bottom: 0;
+    margin-top: 40px;
+    margin-left: 15%;
+}
+
+.loginButton{
+    display: block;
+    width: 70%;
+    margin: 50px auto;
+    height: 50px;
+    font-size: 14px;
+    text-align: center;
+    color: white;
+    background: $button-red;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 25px;
+    transition: all 0.5s linear;
+
+    &:focus {
+        outline: none;
+    }
+    &:hover {
+        transform: translateY(2px);
+    }
+}
+
+
+/* Create Page */
+.desc-textarea {
+    padding: 10px;
+    font-family: Fira Mono;
+    border-radius: 10px;
+    border: none;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    background-color: $bg-page;
+    background-image: url(https://cdn.jsdelivr.net/gh/chanshiyucx/yoi/blog/reimu.png);
+    background-repeat: no-repeat;
+    background-position: 99% bottom;
+    background-blend-mode:color;
+    background-size: 120px;
+    height:120px;
+    width: 100%;
+    box-shadow: $page-box-shadow;
+    resize: none;
+}
+
+.create-input-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.create-input {
+    width: 49%;
+    border: none;
+    font-family: Fira Mono;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: $page-box-shadow;
+    transition: all .4s ease;
+}
+
+.create-input:focus {
+    box-shadow: $post-box-shadow-deep;
+}
+
+/* tags */
+#ck-button {
+    margin:4px;
+    background-color:#EFEFEF;
+    border-radius:15px;
+    border:1px solid #D0D0D0;
+    display: inline-block;
+    transition: all 0.4s linear;
+}
+
+#ck-button:hover {
+    background:$sakura-color-light;
+    transform: translateY(-6px);
+    box-shadow: $tag-box-shadow;  
+}
+
+
+#ck-button label span {
+    text-align:center;
+    padding:5px 8px;
+    display:block;
+    font-size: $font-size-small;
+}
+
+#ck-button label input {
+    display: none;
+}
+
+#ck-button input:checked + span {
+    background-color:$sakura-color;
+    color:#fff;
+    border-radius:15px;
+    box-shadow:  $tag-box-shadow;
+}
+
+#tags{
+    margin: 10px 0;
+}
+
+
+.container h3 {
+    margin: 10px 10px 15px 7px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+#tagsBar button{
+   color: #555;
+   box-shadow: 0 3px 6px rgba(0,0,0,.16), 
+   0 3px 6px rgba(0,0,0,.24);
+   background-color: #F596AA;
+   font-weight: 700;
+   transition: all 0.4s linear;
+}
+
+#tagsBar button:hover{
+   transform: translate(3px,-3px);
+}
+
+#addTagForm{
+   background: white;
+   padding: 20px 30px;
+   display: inline-block;
+   border-radius:15px;
+   box-shadow: 4px 4px 44px -4px rgba(140,94,140,0.46);
+   width: 250px;
+   transition: all 0.4s linear;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   margin-top: -110px;
+   margin-left: -115px; 
+   z-index: 2;
+   opacity: 0;
+   visibility: hidden;
+   transition: all 0.6s ease;
+}
+
+#addTagFormInput {
+    border-radius: 10px;
+    border: $purple-dark solid 1px;
+    font-size: $font-size-base;
+    padding: 5px 10px;
+    width: 100%;
+    box-shadow:$page-box-shadow;
+    transition: all 0.4s linear;
+}
+
+#addTagFormInput:focus {
+   outline: none;
+   border: $purple-deep solid 1px;
+}
+
+#addTagFormButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 14px;
+}
+
+#addTagSubmit {
+    background: cornflowerblue;
+}
+
+
+/* Home */
+#home {
+    min-height: 500px;
+}
+
+.page-btns-group {
+   margin-bottom: 12px 0 24px;
+}
+
+.page-btns-group form{
+   display: inline-block;
+}
+
+.page-btns-group .page-btn {
+   height: 35px;
+   margin: 0 10px;
+   font-size: $font-size-large;
+   background-color: $bg-white-dim;
+   box-shadow: $card-shadow-base;
+   transition: all 0.3s ease-out;
+   text-shadow: 0 1px 1px $purple-dark;
+   text-align: center;
+   overflow: hidden;
+   color: $sora-deep;
+}
+
+.page-btn:hover {
+   background-color: $sora-dim;
+   color: $whitesmoke;
+   transform: translateY(2px);
+}
+
+.btn-add {
+   display: flex;
+   justify-content: flex-end;
+}
+
+/* post */
+.post-list-show{
+   animation: fadeInUp 1s ease-out;
+}
+
+.post-list-thumb{
+   width: 100%;
+   height: 300px;
+   position: relative;
+   margin: 35px 0;
+   border-radius: 10px;
+   box-shadow: $post-box-shadow;
+   transition: all .5s ease;
+}
+
+.post-thumb{
+   width: 55%;
+   height: 100%;
+   overflow: hidden;
+}
+
+
+
+#posts-container {
+    .post {
+        background-color: $bg-white;
+        display: flex;
+        &:hover {
+         box-shadow: 0 $post-box-shadow-deep;
+         transform: translateY(-6px);
+         .post-thumb-img {
+            transform: scale(1.05);
+         }
+        }
+     }
+     @include pc-layout {
+        .post:nth-child(odd) {
+            flex-direction: row;
+            .post-thumb {   
+                border-radius: 10px 0 0 10px;
+                .post-thumb-img {
+                    border-radius: 10px 0 0 10px;
+                }
+            }
+            .post-content-wrap {
+                padding-left: 30px;
+                margin: 20px 10px 0;
+             }
+    
+             .post-content {
+                text-align: right;
+             }
+    
+             .float-content {
+                margin-left: 15px;
+             }
+        }
+        .post:nth-child(even) {
+            flex-direction: row-reverse;
+            .post-thumb {
+                border-radius: 0 10px 10px 0;
+                .post-thumb-img {
+                    border-radius: 0 10px 10px 0;
+                }
+            }
+            .post-content-wrap {
+                padding-right: 30px;
+                margin: 20px 10px 0;
+             }
+    
+             .post-content {
+                text-align: left;
+             }
+    
+             .float-content {
+                margin-right: 15px;
+             }
+         }
+     }
+
+     .post-thumb-img{
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: all .5s ease;
+     }
+
+     @include sp-layout {
+         .post {
+             flex-direction: column;
+             height: 550px;
+         }
+         .post-thumb {
+             width: 100%;
+             height: 100%;
+         }
+         .post-content-wrap {
+             width: 100%;
+         }
+         .post-date {
+             padding-top: 10px;
+         }
+         .post-meta {
+             display: none;
+         }
+         hr {
+             display: none;
+         }
+         .post-title {
+            margin: 10px;
+             h2 {
+                margin: 10px;
+             }
+             border-bottom: solid rgba(100,100,100, .6) .4px;
+         }
+         .float-content {
+             padding:0 0 20px 0;
+         }
+     }
+
+}
+
+
+.post-content-wrap{
+   position: relative;
+   display: inline-block;
+   width: 40%;
+}
+
+.post-title {
+   margin: 18px 0;
+}
+
+.post-title h2{
+   font-size: $font-size-larger;
+}
+
+.post-meta-item {
+   padding: 0 10px 0 0;
+}
+
+.post-hr {
+   position: relative;
+   outline: 0;
+   border: 0;
+   color: black;
+   text-align: center;
+   height: 23px;
+   opacity: .5;
+   margin: 0;
+   padding: 0;
+ }
+
+ .post-hr:before {
+   content: '';
+   background: linear-gradient(to right, transparent, #818078, transparent);
+   position: absolute;
+   left: 0;
+   top: 50%;
+   width: 100%;
+   height: 1px;
+ }
+
+ .post-hr:after {
+   content: attr(data-content);
+   position: relative;
+   display: inline-block;
+   color: black;
+
+   padding: 0 .5em;
+   line-height: 1.5em;
+   color: #818078;
+   background-color: #fcfcfa;
+ }
+
+.float-content {
+   display: block;
+   padding: 10px;
+   font-weight: 500;
+   line-height: 1.6;
+   overflow: hidden;
+   word-wrap: break-word;
+}
+.float-content p {
+   margin: 0;
+   padding: 0;
+}
+
+/* post-show */
+.post-container{
+   box-shadow: $page-box-shadow;
+   display: block;
+   animation: fadeInDown .7s ease-out;
+}
+
+.post-header {
+   height: 493px;
+   overflow: hidden;
+   border-radius: 3px 3px 0 0;
+   position: relative;
+}
+
+.post-header .wrapper {
+   width: 100%;
+   height: 100%;
+   background-size: cover;
+   background-position: center;
+   transition: all .5s ease;
+   animation: coverIn .8s ease-out;
+   z-index: -1;
+}
+
+.post-header .wrapper:hover {
+   transform: scale(1.05);
+}
+
+.post-header .header-text-container {
+   background-color: $bg-white-meta;
+   position: absolute;
+   width: 100%;
+   padding: 12px 14px;
+   box-shadow: $post-title-shadow;
+   bottom: 0;
+}
+
+.header-text-container .post-show-title {
+   display: block;
+   height: 34px;
+} 
+.post-show-title h1{
+   text-align: left;
+   margin: 0;
+   padding: 0;
+}
+
+.header-text-container .post-show-meta {
+   display: block;
+   padding-top: 15px;
+   font-weight: 500;
+   text-align: left;
+}
+
+.post-container .post-body {
+   background-color: $bg-page;
+   padding: 25px 0;
+   text-align: left;
+}
+
+.post-btns {
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
+}
+
+.post-btns form {
+   margin-right: 10px;
+}
+
+
+.self-info {
+   padding: 20px 50px;
+}
+
+.friend-content {
+    text-align: center;
+}

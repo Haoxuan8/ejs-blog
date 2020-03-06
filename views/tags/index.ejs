@@ -1,0 +1,21 @@
+<%- include('../partials/header', {title: '绘空事 | 标签'})%> 
+
+<div class="container">
+    <div class="page">
+        <%- include('../partials/quote', {content: '文章 标签'})%> 
+        <div class="tags-box">
+            <% var i = 0; %> 
+            <% tags.forEach(function(tag){ %>
+                <% if(i==color.length) {i=0;} %> 
+                <div class="tags-box-item">
+                    <a href="/tags/<%= tag._id %>">
+                        <span style="color: <%= color[i] %>"><%= tag.name %> (<%= tag.posts.length %>)</span>
+                    </a>
+                </div>
+                <% i++; %> 
+            <% }) %> 
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %> 

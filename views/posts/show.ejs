@@ -1,0 +1,52 @@
+<%- include('../partials/header', {title: '绘空事 | ' + post.title})%> 
+
+<div class="container">
+    <div class="post-container">
+        <div class="post-header">
+            <div class="wrapper" style="background-image: url('<%=post.coverImg%>')">  
+            </div>
+            <div class="header-text-container">
+                <div class="post-show-title">
+                    <h1> <%= post.title %>  </h1>
+                </div>
+                <div class="post-show-meta">
+                    <span class="post-meta-item">
+                        <i class="far fa-calendar-alt"></i> 
+                                <% moment.tz.setDefault("Asia/Shanghai"); %> 
+                                <% var date = moment(post.meta.createTime); moment.locale('zh-cn'); %> 
+                                <span> <%= moment(date).format('YYYY-MM-DD') %> </span> 
+                    </span>
+                    <span class="post-meta-item">
+                        <i class="far fa-eye"></i> <%= post.meta.views %> 热度
+                    </span>
+                    <span class="post-meta-item"> 
+                        <i class="fas fa-tag"></i>
+                        <% if(post.tags.length > 0) { %> 
+                            <% post.tags.forEach(function(tag) { %>
+                                <span><%= tag.name %>  </span>
+                            <% }) %> 
+                        <% } %> 
+                    </span>
+                </div>
+          </div>  
+        </div>
+
+        <div class="post-body">
+            <% if(currUser && currUser.role == 'admin') {%> 
+            <div class="post-btns">
+                <form action="/posts/<%= post._id %>/edit" method="GET">
+                    <button>Edit</button>
+                </form>
+                <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                    <button class="btn-danger">Delete</button>
+                </form>
+            </div>
+            <% } %>
+            <p> <%= post.description %>  </p>
+            <%- post.contentHTML %> 
+        </div>
+    </div>
+</div>
+
+
+<%- include('../partials/footer')%> 

@@ -1,0 +1,68 @@
+<%- include('../partials/header' , {title: '绘空事 | 创建'})%> 
+
+<div class="container">
+    <div class="page">
+
+        <%- include('../partials/quote', {content: 'Create a New Post'})%> 
+
+        <form action="/posts/create" method="POST">
+            <div class="create-input-container">
+                <input type="text" placeholder="title" name="post[title]" required class="create-input">
+                <input type="text" placeholder="imgURL" name="post[coverImg]" required class="create-input">
+            </div>
+            <h3>Description</h3>
+            <div class="desc-body">
+                <textarea name="post[desc]" id="description"  required class="desc-textarea"></textarea>
+            </div>
+
+            <div id="tags">
+                <div id="tagsBar">
+                    <h3>Tags</h3> <button type="button" id="addNewTag">Add New Tag</button>
+                </div>
+                <% tags.forEach(function(tag, i){ %>
+                    <div id="ck-button">
+                        <label>
+                           <input type="checkbox" value="1" name="tags[<%= tag._id %>]" class="tagInput"><span><%= tag.name %> </span>
+                        </label>
+                     </div> 
+                <% }) %> 
+            </div>
+            <div>
+                <textarea name="post[content]" id="post"></textarea>
+            </div>
+            <button type="submit">submit</button> 
+        </form>
+
+        <div id="addTagForm">
+            <form action="/tags" method="POST">
+                <input type="text" id="addTagFormInput" name="tag[name]">
+                <div id="addTagFormButtons">
+                    <button id="addTagSubmit">Submit</button>
+                    <button id="addTagCancel" type="button">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer')%> 
+
+<script>
+    var simplemde = new SimpleMDE({ element: $("#post")[0],
+    spellChecker: false,
+    autosave: {
+        enabled: true,
+        delay: 10000,
+        uniqueId: "unique"
+    }
+    });
+
+    document.getElementById("addTagCancel").addEventListener("click", function(){
+        document.getElementById("addTagForm").setAttribute("style", "opacity: 0; visibility: hidden");
+    });
+
+    document.getElementById("addNewTag").addEventListener("click", function(){
+        document.getElementById("addTagForm").setAttribute("style", "opacity: 1; visibility: visible");
+    })
+
+</script>

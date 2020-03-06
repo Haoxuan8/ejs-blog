@@ -1,0 +1,45 @@
+<%- include('../partials/header', {title: '绘空事 | 编辑'})%> 
+
+<div class="container">
+    <div class="page">
+
+        <%- include('../partials/quote', {content: 'Create a New Post'})%> 
+
+        <form action="/posts/<%= post._id %>?_method=PUT" method="POST">
+            <div class="create-input-container">
+                <input type="text" placeholder="title" name="post[title]" required class="create-input" value="<%= post.title %>">
+                <input type="text" placeholder="imgURL" name="post[coverImg]" required class="create-input" value="<%= post.coverImg %>">
+            </div>
+            <h3>Description</h3>
+            <div class="desc-body">
+                <textarea name="post[desc]" id="description"  required class="desc-textarea"><%= post.description %></textarea>
+            </div>
+            <div>
+                <textarea name="post[content]" id="post"><%= post.contentMd %></textarea>
+            </div>
+            <button type="submit">submit</button> 
+        </form>
+    </div>
+</div>
+
+<%- include('../partials/footer')%> 
+
+<script>
+    var simplemde = new SimpleMDE({ element: $("#post")[0],
+    spellChecker: false,
+    autosave: {
+        enabled: true,
+        delay: 10000,
+        uniqueId: "unique"
+    }
+    });
+
+    document.getElementById("addTagCancel").addEventListener("click", function(){
+        document.getElementById("addTagForm").setAttribute("style", "opacity: 0; visibility: hidden");
+    });
+
+    document.getElementById("addNewTag").addEventListener("click", function(){
+        document.getElementById("addTagForm").setAttribute("style", "opacity: 1; visibility: visible");
+    })
+
+</script>

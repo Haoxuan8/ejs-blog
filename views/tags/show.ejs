@@ -1,0 +1,37 @@
+<%- include('../partials/header' , {title: '绘空事 | ' + tag.name})%> 
+
+<div class="container">
+    <div class="page">
+        <%- include('../partials/quote', {content: '文章 标签'})%> 
+        <div class="tag-list-post">
+            <% tag.posts.forEach(function(post){ %>
+                <% if(post.display)  { %> 
+                <div class="tag-post">
+                    <a href="/posts/<%= post._id %>">
+                        <div class="tag-post-img" style="background-image: url('<%=post.coverImg%>')"></div>   
+                    </a>           
+                    <div class="tag-text-container">
+                        <div class="post-show-title">
+                            <a href="/posts/<%= post._id %>"><h1><%= post.title %></h1></a>
+                        </div>
+                        <div class="post-show-meta">
+                            <span class="post-meta-item">
+                                <i class="far fa-calendar-alt"></i> 
+                                        <% moment.tz.setDefault("Asia/Shanghai"); %> 
+                                        <% var date = moment(post.meta.createTime); moment.locale('zh-cn'); %> 
+                                        <span> <%= moment(date).format('YYYY-MM-DD') %> </span> 
+                            </span>
+                            <span class="post-meta-item">
+                                <i class="far fa-eye"></i> <%= post.meta.views %> 热度
+                            </span>
+                        </div>
+                  </div> 
+
+                </div>
+                <% } %>
+            <% }) %> 
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %> 

@@ -1,0 +1,99 @@
+<%- include('./partials/header', {title: '绘空事'}) %> 
+
+<div id="home">
+    <div class="container">
+        <% if(currUser && currUser.role == 'admin') {%> 
+            <div>
+                <a href="/posts/create" class="btn-add"><button>Add a New Post</button></a>
+            </div>
+        <% } %> 
+        <div id="posts-container">
+            <% posts.forEach(function(post) { %>
+                <div class="post post-list-thumb">
+                    <div class="post-thumb">
+                        <a href="/posts/<%= post._id %>">
+                            <div class="post-thumb-img" style="background-image: url('<%=post.coverImg%>')">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="post-content-wrap">
+                        <div class="post-content">
+                            <div class="post-date">
+                                <i class="far fa-calendar-alt"></i> 
+                                <% moment.tz.setDefault("Asia/Shanghai"); %> 
+                                <% var date = moment(post.meta.createTime); moment.locale('zh-cn'); %> 
+                                <span>发布于 <%= moment(date, 'YYYYMMDD').fromNow() %> </span> 
+                            </div>
+                            <div class="post-title">
+                                <a href="/posts/<%= post._id %>">
+                                    <h2><%= post.title %> </h2>
+                                </a>
+                            </div>
+                            <div class="post-meta">
+                                <span class="post-meta-item"><i class="far fa-eye"></i> <%= post.meta.views %> 热度 </span>
+                                <span class="post-meta-item"> 
+                                <i class="fas fa-tag"></i>
+                                <% if(post.tags.length > 0) { %> 
+                                    <% post.tags.forEach(function(tag) { %>
+                                        <span><%= tag.name %>  </span>
+                                    <% }) %> 
+                                <% } %> 
+                                 </span>
+                            </div>
+                            <hr class="post-hr">
+                            <div class="float-content">
+                                <% if(post.description) { %> 
+                                <p><%= post.description.substring(0,80) %><% if(post.description.length>90) { %><span>...</span>
+                                    <% } %></p>
+                                <% } %> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }) %> 
+            <div class="page-btns-group">
+                <% if(page!=1) { %>
+                    <form action="/page/<%= Number(page)-1 %>" method="GET">
+                        <span><button class="page-btn">Prev</button></span>
+                    </form>
+                <% } %>
+                <% if(count > page*postsNumEachPage) { %> 
+                    <form action="/page/<%= Number(page)+1 %>" method="GET">
+                        <span><button class="page-btn">Next</button></span>
+                    </form>
+                <% } %> 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('./partials/footer')%> 
+
+
+<script>
+
+var $window = $(window), win_height_padded = $window.height() * 1.1;
+
+function checkAnimation() {
+    var scrolled = $window.scrollTop();
+    $('.post').each(function(){
+        var $this = $(this), offsetTop = $this.offset().top;
+        if(scrolled + win_height_padded > offsetTop) {
+            $this.addClass('post-list-show');
+        } else {
+            $this.removeClass('post-list-show');
+        }
+    });
+
+    var $elem = $('.post');
+
+}
+
+// Capture scroll events
+checkAnimation();
+$window.scroll(function(){
+    checkAnimation();
+});
+
+</script>

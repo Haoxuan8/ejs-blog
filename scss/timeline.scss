@@ -1,0 +1,194 @@
+.timeline {
+    padding: 20px 180px;
+    .tl-year-month-container {
+        border-top: 4px solid;
+        margin: 0;
+        padding: 40px;
+        border-image: linear-gradient(to right, #2EA9DF 0%, #F4A7B9 100%);
+        border-image-slice: 1;
+        border-width: 4px;
+
+        &:first-child {
+            border-top: none;
+        }
+
+        &:nth-child(odd) {
+            border-right: 4px solid;
+            .tl-year-month,.tl-title {
+                text-align: end;
+            }
+            .tl-year-month::before {
+                left: 100%; 
+                margin-left: 33px;
+                background-color: $sakura-color;
+            }
+            .tl-year-month::after {
+                left: 100%; 
+                margin-left: 30px;
+                background-color: white;
+            }
+
+        }
+
+        &:nth-child(even) {
+            border-left: 4px solid;
+            .tl-year-month::before{
+                right: 100%; 
+                margin-right: 33px;
+                background-color: $sora-dim;
+            }
+            .tl-year-month::after {
+                right: 100%; 
+                margin-right: 30px;
+                background-color: white;
+            }
+        }
+
+        .tl-year-month{
+            position: relative;
+            font-weight: bold;
+            font-size: $font-size-larger;
+
+            &::before {
+                content: "";
+                position: absolute;
+                border-radius: 50%;
+                top: 50%;
+                margin-top: -9px;
+                width: 18px;
+                height: 18px;
+                text-align: center;
+                box-shadow: 1px 1px 1px #bbb;
+                z-index: 2;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                border-radius: 50%;
+                top: 50%;
+                margin-top: -12.5px;
+                width: 25px;
+                height: 25px;
+                text-align: center;
+                box-shadow: 1px 1px 1px #bbb;
+            }
+        }
+    }
+
+    @include sp-layout {
+        padding: 20px;
+    }
+}
+
+.tl-title {
+    position: relative;
+    margin: 35px 0;
+    transition: all .4s ease-out;
+    font-weight: 500;
+    font-size: $font-size-large;
+}
+
+.tl-title::before {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    margin-top: -6px;
+    width: 12px;
+    height: 12px;
+    text-align: center;
+    box-shadow: 1px 1px 1px #bbb;
+    z-index: 2;
+}
+
+.tl-title::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    margin-top: -9px;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    box-shadow: 1px 1px 1px #bbb;
+}
+
+.timeline .tl-year-month-container:nth-child(odd) .tl-title::before {
+    left: 100%; 
+    margin-left: 36px;
+    background-color: $sakura-color;
+}
+
+.timeline .tl-year-month-container:nth-child(odd) .tl-title::after {
+    left: 100%; 
+    margin-left: 33px;
+    background-color: white;
+}
+
+.timeline .tl-year-month-container:nth-child(even) .tl-title::before{
+    right: 100%; 
+    margin-right: 36px;
+    background-color: $sora-dim;
+}
+
+.timeline .tl-year-month-container:nth-child(even) .tl-title::after {
+    right: 100%; 
+    margin-right: 33px;
+    background-color: white;
+}
+
+.tl-title:hover {
+    transform: translateY(-3px);
+}
+
+.tl-title a { 
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: $page-box-shadow;
+    color: white;
+}
+
+.timeline .tl-year-month-container:nth-child(odd) .tl-title a {
+    background-color: $sakura-color;
+}
+
+.timeline .tl-year-month-container:nth-child(even) .tl-title a {
+    background-color: $sora-deep;
+}
+
+.timeline .tl-year-month-container:nth-child(odd) .tl-title a::after {
+    box-sizing: border-box;
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 16px solid $sakura-color;
+    left:100%;
+}
+
+.timeline .tl-year-month-container:nth-child(even) .tl-title a::before {
+    box-sizing: border-box;
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 16px solid $sora-deep;
+    right:100%;
+}
+
+.timeline-show{
+    animation: fadeInUp .7s ease-out;
+}
+
+
+.total-posts {
+    text-align: center;
+    margin: 15px;
+}

@@ -1,0 +1,13 @@
+<%- include('./partials/header', {title: '绘空事 | 登陆'}) %> 
+<div class="loginForm">
+    <form action="/login" method="POST">
+    <label for="username" class="loginLabel">Enter your username</label>
+    <input id="username" type="text" name="username"  class="loginInput"
+    required pattern=".{5,}"   required title="5 characters minimum">
+    <label for="password" class="loginLabel">Password</label>
+    <input id="password" type="password" name="password"  class="loginInput" required>
+    <button @click="loginPost" class="loginButton">Log in</button>
+  </form>
+</div>
+
+<%- include('./partials/footer') %> 

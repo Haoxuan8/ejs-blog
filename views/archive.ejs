@@ -1,0 +1,64 @@
+<%- include('./partials/header', {title: '绘空事 | 归档'})%> 
+
+<div class="container">
+    <div class="page">
+    <%- include('./partials/quote', {content: '文章 归档'})%> 
+    <div class="total-posts">
+        <p>目前总共 <%= posts.length %> 文章。 再接再厉！</p>
+    </div>
+    <% if(posts.length > 0) {%> 
+        <div class="timeline">
+            <% var i=0; while(i<posts.length) {%>
+                <% var date = moment(posts[i].meta.createTime); moment.locale('zh-cn');%> 
+                <% var currYear = moment(date).year(); var currMonth = moment(date).month() %>
+                <div class="tl-year-month-container">
+                    <div class="tl-year-month">
+                        <span> <%= currYear %> 年 <%= currMonth + 1%> 月</span>
+                    </div>
+                    <% while(i<posts.length) {%>
+                        <% var date = moment(posts[i].meta.createTime); var year = moment(date).year(); var month = moment(date).month();%>
+                        <% if(year != currYear || month != currMonth) {break;} %>  
+                         <div class="tl-title">
+                             <a href="/posts/<%= posts[i]._id %>">
+                                <span><%= posts[i].title %></span>
+                             </a>
+                         </div>
+                         <% i++ %>
+                    <% } %>  
+                </div>
+            <% } %> 
+        </div>
+    <% } %> 
+
+    </div>
+</div>
+
+<%- include('./partials/footer')%> 
+
+
+<script>
+
+    var $window = $(window), win_height_padded = $window.height() * 1.1;
+    
+    function checkAnimation() {
+        var scrolled = $window.scrollTop();
+        $('.tl-title').each(function(){
+            var $this = $(this), offsetTop = $this.offset().top;
+            if(scrolled + win_height_padded > offsetTop) {
+                $this.addClass('timeline-show');
+            } else {
+                $this.removeClass('timeline-show');
+            }
+        });
+    
+        var $elem = $('.tl-title');
+    
+    }
+    
+    // Capture scroll events
+    checkAnimation();
+    $window.scroll(function(){
+        checkAnimation();
+    });
+    
+    </script>
